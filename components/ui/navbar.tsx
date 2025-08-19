@@ -1,0 +1,215 @@
+"use client"
+import {
+  Navbar,
+  NavBody,
+  NavItems,
+  MobileNav,
+  NavbarLogo,
+  NavbarButton,
+  MobileNavHeader,
+  MobileNavToggle,
+  MobileNavMenu,
+} from "@/components/header"
+import { useState } from "react"
+import {
+  Wrench,
+  Accessibility,
+  Smartphone,
+  Workflow,
+  Users as UsersIcon,
+  ClipboardCheck,
+  Gauge,
+  Activity,
+  Shield as ShieldIcon,
+} from "lucide-react"
+
+export function NavbarDemo() {
+  const navItems = [
+    {
+      name: "Home",
+      link: "/",
+    },
+    {
+      name: "Services",
+      link: "/services",
+      hasDropdown: true,
+      dropdownItems: [
+        {
+          name: "Automation Testing",
+          link: "/services/web-development",
+          icon: <Wrench className='w-4 h-4' />,
+        },
+        {
+          name: "Accessibility Testing",
+          link: "/services/mobile-development",
+          icon: <Accessibility className='w-4 h-4' />,
+        },
+        {
+          name: "Mobile Application",
+          link: "/services/ui-ux-design",
+          icon: <Smartphone className='w-4 h-4' />,
+        },
+        {
+          name: "ETL Testing",
+          link: "/services/qa-testing",
+          icon: <Workflow className='w-4 h-4' />,
+        },
+        {
+          name: "Software QA Outsourcing",
+          link: "/services/devops",
+          icon: <UsersIcon className='w-4 h-4' />,
+        },
+        {
+          name: "Manual Testing",
+          link: "/manual_testing",
+          icon: <ClipboardCheck className='w-4 h-4' />,
+        },
+        {
+          name: "Non-Functional Testing",
+          link: "/services/database-design",
+          icon: <Gauge className='w-4 h-4' />,
+        },
+        {
+          name: "Performance Testing",
+          link: "/services/api-development",
+          icon: <Activity className='w-4 h-4' />,
+        },
+        {
+          name: "Security Testing",
+          link: "/services/security-auditing",
+          icon: <ShieldIcon className='w-4 h-4' />,
+        },
+      ],
+    },
+    {
+      name: "Contact",
+      link: "/contact",
+    },
+  ]
+
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
+
+  return (
+    <div className='relative w-full'>
+      <Navbar>
+        {/* Desktop Navigation */}
+        <NavBody>
+          <NavbarLogo />
+          <NavItems
+            items={navItems}
+            onServicesDropdownToggle={(isOpen) =>
+              setIsServicesDropdownOpen(isOpen)
+            }
+          />
+          <div className='flex items-center gap-4'>
+            <NavbarButton variant='primary'>Book a call</NavbarButton>
+          </div>
+        </NavBody>
+
+        {/* Services Dropdown for Desktop */}
+        {isServicesDropdownOpen && (
+          <div
+            className='absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[28rem] bg-white dark:bg-neutral-900 rounded-lg shadow-lg border border-gray-200 dark:border-neutral-700 z-50'
+            onMouseEnter={() => setIsServicesDropdownOpen(true)}
+            onMouseLeave={() => setIsServicesDropdownOpen(false)}
+          >
+            <div className='p-4'>
+              <div className='grid grid-cols-3 gap-3'>
+                {navItems
+                  .find((item) => item.name === "Services")
+                  ?.dropdownItems?.map((service, idx) => (
+                    <a
+                      key={`desktop-service-${idx}`}
+                      href={service.link}
+                      className='flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors text-sm text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white'
+                    >
+                      <span className='shrink-0'>{service.icon}</span>
+                      <span className='truncate'>{service.name}</span>
+                    </a>
+                  ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Mobile Navigation */}
+        <MobileNav>
+          <MobileNavHeader>
+            <NavbarLogo />
+            <MobileNavToggle
+              isOpen={isMobileMenuOpen}
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            />
+          </MobileNavHeader>
+
+          <MobileNavMenu
+            isOpen={isMobileMenuOpen}
+            onClose={() => setIsMobileMenuOpen(false)}
+          >
+            {navItems.map((item, idx) => (
+              <div key={`mobile-link-${idx}`}>
+                {item.hasDropdown ? (
+                  <div className='space-y-2'>
+                    <button
+                      onClick={() =>
+                        setIsServicesDropdownOpen(!isServicesDropdownOpen)
+                      }
+                      className='relative text-neutral-600 dark:text-neutral-300 w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-md'
+                    >
+                      <span className='block'>{item.name}</span>
+                    </button>
+                    {isServicesDropdownOpen && (
+                      <div className='ml-4 space-y-2'>
+                        <div className='grid grid-cols-3 gap-2'>
+                          {item.dropdownItems?.map((service, serviceIdx) => (
+                            <a
+                              key={`mobile-service-${serviceIdx}`}
+                              href={service.link}
+                              onClick={() => {
+                                setIsMobileMenuOpen(false)
+                                setIsServicesDropdownOpen(false)
+                              }}
+                              className='flex items-center gap-2 px-3 py-2 text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-gray-50 dark:hover:bg-neutral-800 rounded-md'
+                            >
+                              <span className='shrink-0'>{service.icon}</span>
+                              <span className='truncate'>{service.name}</span>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <a
+                    href={item.link}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className='relative text-neutral-600 dark:text-neutral-300 block px-4 py-2 hover:bg-gray-100 dark:hover:bg-neutral-800 rounded-md'
+                  >
+                    <span className='block'>{item.name}</span>
+                  </a>
+                )}
+              </div>
+            ))}
+            <div className='flex w-full flex-col gap-4'>
+              <NavbarButton
+                onClick={() => setIsMobileMenuOpen(false)}
+                variant='primary'
+                className='w-full'
+              >
+                Login
+              </NavbarButton>
+              <NavbarButton
+                onClick={() => setIsMobileMenuOpen(false)}
+                variant='primary'
+                className='w-full'
+              >
+                Book a call
+              </NavbarButton>
+            </div>
+          </MobileNavMenu>
+        </MobileNav>
+      </Navbar>
+    </div>
+  )
+}
