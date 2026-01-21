@@ -8,7 +8,7 @@ export default function Example() {
                     font-family: "Poppins", sans-serif;
                 }
             `}</style>
-            <section className='relative bg-black flex flex-col md:flex-row justify-center px-4 py-20 gap-20'>
+            <section className='relative bg-neutral-900 flex flex-col md:flex-row justify-center px-4 py-20 gap-20'>
                 
                 <div className='text-center md:text-left mt-12'>
                     

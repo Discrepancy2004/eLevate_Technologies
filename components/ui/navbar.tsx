@@ -107,7 +107,7 @@ export function NavbarDemo() {
             }
           />
           <div className='flex items-center gap-4'>
-            <NavbarButton variant='primary'>Book a call</NavbarButton>
+            <NavbarButton variant='primary' href='/contact'>Book a call</NavbarButton>
           </div>
         </NavBody>
 
@@ -204,6 +204,7 @@ export function NavbarDemo() {
                 Login
               </NavbarButton>
               <NavbarButton
+                href='/contact'
                 onClick={() => setIsMobileMenuOpen(false)}
                 variant='primary'
                 className='w-full'
