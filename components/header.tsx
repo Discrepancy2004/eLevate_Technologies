@@ -142,6 +142,8 @@ export const NavItems = ({
             setHovered(idx)
             if (item.hasDropdown) {
               onServicesDropdownToggle?.(true)
+            } else {
+              onServicesDropdownToggle?.(false)
             }
           }}
         >

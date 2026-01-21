@@ -1,728 +1,405 @@
+"use client"
 import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card"
+import { AuroraBackground as Aurora } from "./aurora"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
-  Users,
-  Target,
-  Award,
-  Lightbulb,
-  ArrowRight,
-  MapPin,
-  Shield,
   CheckCircle,
+  Shield,
+  Users,
+  ArrowRight,
+  Target,
+  Smartphone,
+  Workflow,
+  Code,
+  Activity,
+  ClipboardCheck,
+  TrendingUp,
+  Building2,
+  Accessibility,
+  Zap,
 } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
-// import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
 import { NavbarDemo } from "@/components/ui/navbar"
-
+import { Footer } from "@/components/footer"
+import { Highlight } from "./highlight"
 export default function AboutPage() {
-  const team = [
-    {
-      name: "Alex Rodriguez",
-      role: "CEO & Founder",
-      experience: "15+ years",
-      image: "/ceo-headshot.png",
-    },
-    {
-      name: "Sarah Chen",
-      role: "Head of QA",
-      experience: "12+ years",
-      image: "/qa-manager-headshot.png",
-    },
-    {
-      name: "Michael Thompson",
-      role: "Lead Automation Engineer",
-      experience: "10+ years",
-      image: "/placeholder-jtn6f.png",
-    },
-    {
-      name: "Emily Davis",
-      role: "Performance Testing Specialist",
-      experience: "8+ years",
-      image: "/headshot-specialist.png",
-    },
-  ]
-
   return (
     <div className='min-h-screen bg-background'>
       <NavbarDemo />
-      {/* Hero Section */}
-      <section className='py-20 lg:py-32'>
-        <div className='container px-4 md:px-6'>
-          <div className='text-center space-y-4 max-w-3xl mx-auto'>
-            <Badge variant='outline'>About QualityPro</Badge>
-            <h1 className='text-3xl font-bold tracking-tighter sm:text-5xl'>
-              Dedicated to Software Excellence Since 2015
+
+      <Aurora>
+        <div className='container px-4 md:px-6 max-w-7xl mx-auto'>
+          <div className='text-center space-y-6 max-w-4xl mx-auto py-20 lg:py-32 flex flex-col justify-center min-h-screen'>
+            <h1 className='text-6xl font-black tracking-tight sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] leading-none'>
+              <span className='text-primary drop-shadow-2xl block text-center'>eLevate</span>
+              <span className='text-primary drop-shadow-2xl block text-center -ml-8 sm:-ml-12 md:-ml-16 lg:-ml-20 xl:-ml-20'>Technologies</span>
             </h1>
-            <p className='text-muted-foreground md:text-xl'>
-              We're a team of passionate QA professionals committed to helping
-              businesses deliver flawless software experiences through
-              comprehensive testing and quality assurance services.
-            </p>
           </div>
         </div>
-      </section>
+      </Aurora>
 
-      {/* Mission & Vision */}
-      <section className='py-20 bg-muted/50'>
-        <div className='container px-4 md:px-6'>
-          <div className='grid gap-8 md:grid-cols-2'>
-            <Card>
-              <CardHeader>
-                <Target className='h-10 w-10 text-primary mb-2' />
-                <CardTitle>Our Mission</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className='text-muted-foreground'>
-                  To empower businesses with reliable, scalable, and
-                  comprehensive quality assurance solutions that ensure their
-                  software meets the highest standards of performance, security,
-                  and user experience.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Lightbulb className='h-10 w-10 text-primary mb-2' />
-                <CardTitle>Our Vision</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className='text-muted-foreground'>
-                  To be the leading quality assurance partner for innovative
-                  companies worldwide, setting new standards in software testing
-                  excellence and helping shape the future of digital
-                  experiences.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Company Stats */}
-      <section className='py-20'>
-        <div className='container px-4 md:px-6'>
-          <div className='text-center mb-12'>
-            <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl mb-4'>
-              Our Track Record
-            </h2>
-            <p className='text-muted-foreground md:text-xl max-w-2xl mx-auto'>
-              Numbers that speak to our commitment to quality and client
-              success.
-            </p>
-          </div>
-
-          <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-4'>
-            <div className='text-center'>
-              <div className='text-4xl font-bold text-primary mb-2'>500+</div>
-              <div className='text-sm text-muted-foreground'>
-                Projects Completed
-              </div>
-            </div>
-            <div className='text-center'>
-              <div className='text-4xl font-bold text-primary mb-2'>150+</div>
-              <div className='text-sm text-muted-foreground'>Happy Clients</div>
-            </div>
-            <div className='text-center'>
-              <div className='text-4xl font-bold text-primary mb-2'>50+</div>
-              <div className='text-sm text-muted-foreground'>QA Experts</div>
-            </div>
-            <div className='text-center'>
-              <div className='text-4xl font-bold text-primary mb-2'>99.9%</div>
-              <div className='text-sm text-muted-foreground'>
-                Client Satisfaction
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
-      <section className='py-20 bg-muted/50'>
-        <div className='container px-4 md:px-6'>
-          <div className='text-center mb-12'>
-            <Badge variant='outline' className='mb-4'>
-              Our Team
-            </Badge>
-            <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl'>
-              Meet Our Leadership
-            </h2>
-            <p className='mt-4 text-muted-foreground md:text-xl max-w-2xl mx-auto'>
-              Experienced professionals leading the charge in quality assurance
-              innovation.
-            </p>
-          </div>
-
-          <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-4'>
-            {team.map((member, index) => (
-              <Card key={index} className='text-center'>
-                <CardContent className='pt-6'>
-                  <Image
-                    src={member.image || "/placeholder.svg"}
-                    alt={member.name}
-                    width={150}
-                    height={150}
-                    className='rounded-full mx-auto mb-4'
-                  />
-                  <h3 className='font-semibold text-lg'>{member.name}</h3>
-                  <p className='text-primary text-sm font-medium'>
-                    {member.role}
+      {/* Section 1: About Us */}
+      <section className='py-16 lg:py-24'>
+        <div className='container px-4 md:px-6 max-w-7xl mx-auto'>
+          <div className='grid gap-8 lg:grid-cols-2 items-center'>
+            <div className='order-2 lg:order-1'>
+              <Card className='h-full shadow-lg border-2'>
+                <CardHeader>
+                  <Badge variant='outline' className='w-fit mb-4'>
+                    About Us
+                  </Badge>
+                  <CardTitle className='text-3xl font-bold mb-4'>
+                    Specialised Testing Services
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className='space-y-4'>
+                  <p className='text-lg text-muted-foreground leading-relaxed'>
+                    We specialise in end-to-end testing services across web,
+                    mobile, and data platforms, combining deep testing expertise
+                    with modern tools and industry best practices.
                   </p>
-                  <p className='text-muted-foreground text-sm'>
-                    {member.experience}
+                  <p className='text-lg text-muted-foreground leading-relaxed'>
+                    Our approach ensures that applications not only function as
+                    expected but also meet today's demands for performance,
+                    accessibility, security, and user experience.
                   </p>
                 </CardContent>
               </Card>
-            ))}
+            </div>
+            <div className='order-1 lg:order-2'>
+              <div className='relative rounded-2xl overflow-hidden shadow-2xl'>
+                <img
+                  src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop'
+                  alt='Team collaboration'
+                  className='w-full h-[400px] object-cover'
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Extended Team */}
-      <section className='py-20'>
-        <div className='container px-4 md:px-6'>
-          <div className='text-center mb-12'>
-            <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl'>
-              Our Expert Team
-            </h2>
-            <p className='mt-4 text-muted-foreground md:text-xl max-w-2xl mx-auto'>
-              Meet more of our talented QA professionals and specialists.
-            </p>
-          </div>
-
-          <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-4'>
-            <Card className='text-center'>
-              <CardContent className='pt-6'>
-                <Image
-                  src='/qa-engineer-1.png'
-                  alt='David Wilson'
-                  width={150}
-                  height={150}
-                  className='rounded-full mx-auto mb-4'
+      {/* Section 2: Service Offerings */}
+      <section className='py-16 lg:py-24 bg-muted/50'>
+        <div className='container px-4 md:px-6 max-w-7xl mx-auto'>
+          <div className='grid gap-8 lg:grid-cols-2 items-center'>
+            <div>
+              <div className='relative rounded-2xl overflow-hidden shadow-2xl'>
+                <img
+                  src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000&auto=format&fit=crop'
+                  alt='Testing services'
+                  className='w-full h-[400px] object-cover'
                 />
-                <h3 className='font-semibold text-lg'>David Wilson</h3>
-                <p className='text-primary text-sm font-medium'>
-                  Senior QA Engineer
-                </p>
-                <p className='text-muted-foreground text-sm'>7+ years</p>
-                <div className='mt-3 flex flex-wrap gap-1 justify-center'>
-                  <Badge variant='outline' className='text-xs'>
-                    Selenium
+              </div>
+            </div>
+            <div>
+              <Card className='h-full shadow-lg border-2'>
+                <CardHeader>
+                  <Badge variant='outline' className='w-fit mb-4'>
+                    Our Service Offerings
                   </Badge>
-                  <Badge variant='outline' className='text-xs'>
-                    API Testing
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className='text-center'>
-              <CardContent className='pt-6'>
-                <Image
-                  src='/qa-engineer-2.png'
-                  alt='Lisa Zhang'
-                  width={150}
-                  height={150}
-                  className='rounded-full mx-auto mb-4'
-                />
-                <h3 className='font-semibold text-lg'>Lisa Zhang</h3>
-                <p className='text-primary text-sm font-medium'>
-                  Mobile Testing Specialist
-                </p>
-                <p className='text-muted-foreground text-sm'>6+ years</p>
-                <div className='mt-3 flex flex-wrap gap-1 justify-center'>
-                  <Badge variant='outline' className='text-xs'>
-                    iOS
-                  </Badge>
-                  <Badge variant='outline' className='text-xs'>
-                    Android
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className='text-center'>
-              <CardContent className='pt-6'>
-                <Image
-                  src='/qa-engineer-3.png'
-                  alt='Robert Kumar'
-                  width={150}
-                  height={150}
-                  className='rounded-full mx-auto mb-4'
-                />
-                <h3 className='font-semibold text-lg'>Robert Kumar</h3>
-                <p className='text-primary text-sm font-medium'>
-                  Security Testing Expert
-                </p>
-                <p className='text-muted-foreground text-sm'>9+ years</p>
-                <div className='mt-3 flex flex-wrap gap-1 justify-center'>
-                  <Badge variant='outline' className='text-xs'>
-                    Penetration
-                  </Badge>
-                  <Badge variant='outline' className='text-xs'>
-                    OWASP
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className='text-center'>
-              <CardContent className='pt-6'>
-                <Image
-                  src='/qa-engineer-4.png'
-                  alt='Maria Garcia'
-                  width={150}
-                  height={150}
-                  className='rounded-full mx-auto mb-4'
-                />
-                <h3 className='font-semibold text-lg'>Maria Garcia</h3>
-                <p className='text-primary text-sm font-medium'>
-                  Test Automation Architect
-                </p>
-                <p className='text-muted-foreground text-sm'>11+ years</p>
-                <div className='mt-3 flex flex-wrap gap-1 justify-center'>
-                  <Badge variant='outline' className='text-xs'>
-                    Cypress
-                  </Badge>
-                  <Badge variant='outline' className='text-xs'>
-                    CI/CD
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className='text-center'>
-              <CardContent className='pt-6'>
-                <Image
-                  src='/qa-engineer-5.png'
-                  alt='James Park'
-                  width={150}
-                  height={150}
-                  className='rounded-full mx-auto mb-4'
-                />
-                <h3 className='font-semibold text-lg'>James Park</h3>
-                <p className='text-primary text-sm font-medium'>
-                  Performance Testing Lead
-                </p>
-                <p className='text-muted-foreground text-sm'>8+ years</p>
-                <div className='mt-3 flex flex-wrap gap-1 justify-center'>
-                  <Badge variant='outline' className='text-xs'>
-                    JMeter
-                  </Badge>
-                  <Badge variant='outline' className='text-xs'>
-                    LoadRunner
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className='text-center'>
-              <CardContent className='pt-6'>
-                <Image
-                  src='/qa-engineer-6.png'
-                  alt='Anna Petrov'
-                  width={150}
-                  height={150}
-                  className='rounded-full mx-auto mb-4'
-                />
-                <h3 className='font-semibold text-lg'>Anna Petrov</h3>
-                <p className='text-primary text-sm font-medium'>
-                  Accessibility Testing Expert
-                </p>
-                <p className='text-muted-foreground text-sm'>5+ years</p>
-                <div className='mt-3 flex flex-wrap gap-1 justify-center'>
-                  <Badge variant='outline' className='text-xs'>
-                    WCAG
-                  </Badge>
-                  <Badge variant='outline' className='text-xs'>
-                    Screen Readers
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className='text-center'>
-              <CardContent className='pt-6'>
-                <Image
-                  src='/qa-engineer-7.png'
-                  alt='Tom Anderson'
-                  width={150}
-                  height={150}
-                  className='rounded-full mx-auto mb-4'
-                />
-                <h3 className='font-semibold text-lg'>Tom Anderson</h3>
-                <p className='text-primary text-sm font-medium'>
-                  DevOps QA Engineer
-                </p>
-                <p className='text-muted-foreground text-sm'>7+ years</p>
-                <div className='mt-3 flex flex-wrap gap-1 justify-center'>
-                  <Badge variant='outline' className='text-xs'>
-                    Docker
-                  </Badge>
-                  <Badge variant='outline' className='text-xs'>
-                    Kubernetes
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className='text-center'>
-              <CardContent className='pt-6'>
-                <Image
-                  src='/qa-engineer-8.png'
-                  alt='Sophie Martin'
-                  width={150}
-                  height={150}
-                  className='rounded-full mx-auto mb-4'
-                />
-                <h3 className='font-semibold text-lg'>Sophie Martin</h3>
-                <p className='text-primary text-sm font-medium'>
-                  Manual Testing Specialist
-                </p>
-                <p className='text-muted-foreground text-sm'>6+ years</p>
-                <div className='mt-3 flex flex-wrap gap-1 justify-center'>
-                  <Badge variant='outline' className='text-xs'>
-                    Exploratory
-                  </Badge>
-                  <Badge variant='outline' className='text-xs'>
-                    Usability
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
+                  <CardTitle className='text-3xl font-bold mb-4'>
+                    Comprehensive Testing Solutions
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className='space-y-4'>
+                  <p className='text-lg text-muted-foreground leading-relaxed'>
+                    Our service offerings include functional and non-functional
+                    testing, manual and automated testing, ETL and data
+                    validation testing, mobile and web automation framework
+                    setup, performance and load testing, and accessibility
+                    testing aligned with global standards such as WCAG.
+                  </p>
+                  <p className='text-lg text-muted-foreground leading-relaxed'>
+                    We work with the latest technologies, cloud-based platforms,
+                    CI/CD pipelines, and open-source and enterprise testing
+                    tools to deliver scalable and future-ready solutions.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Company Timeline */}
-      <section className='py-20 bg-muted/50'>
-        <div className='container px-4 md:px-6'>
-          <div className='text-center mb-12'>
-            <Badge variant='outline' className='mb-4'>
-              Our Journey
-            </Badge>
-            <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl'>
-              Company Milestones
-            </h2>
-            <p className='mt-4 text-muted-foreground md:text-xl max-w-2xl mx-auto'>
-              Key moments in our journey to becoming a leading QA partner.
-            </p>
-          </div>
-
-          <div className='grid gap-8 md:grid-cols-2 lg:grid-cols-4'>
-            <Card>
-              <CardHeader>
-                <div className='text-3xl font-bold text-primary'>2015</div>
-                <CardTitle>Company Founded</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className='text-muted-foreground'>
-                  Started with 5 QA engineers and a vision for excellence
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className='text-3xl font-bold text-primary'>2017</div>
-                <CardTitle>First 100 Clients</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className='text-muted-foreground'>
-                  Reached milestone of serving 100+ satisfied clients
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className='text-3xl font-bold text-primary'>2020</div>
-                <CardTitle>ISO Certification</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className='text-muted-foreground'>
-                  Achieved ISO 9001:2015 certification for quality management
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className='text-3xl font-bold text-primary'>2023</div>
-                <CardTitle>50+ Team Members</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className='text-muted-foreground'>
-                  Expanded to 50+ QA professionals across multiple
-                  specializations
-                </p>
-              </CardContent>
-            </Card>
+      {/* Section 3: Our Approach */}
+      <section className='py-16 lg:py-24'>
+        <div className='container px-4 md:px-6 max-w-7xl mx-auto'>
+          <div className='grid gap-8 lg:grid-cols-2 items-center'>
+            <div>
+              <Card className='h-full shadow-lg border-2'>
+                <CardHeader>
+                  <Badge variant='outline' className='w-fit mb-4'>
+                    Our Approach
+                  </Badge>
+                  <CardTitle className='text-3xl font-bold mb-4'>
+                    Quality Built Into Every Stage
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className='space-y-4'>
+                  <p className='text-lg text-muted-foreground leading-relaxed'>
+                    At Elevation Technologies, we believe quality should be
+                    built into every stage of the software development
+                    lifecycle. We collaborate closely with our clients to
+                    understand their business goals, mitigate risks early, and
+                    accelerate time-to-market without compromising on quality.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+            <div>
+              <div className='relative rounded-2xl overflow-hidden shadow-2xl'>
+                <img
+                  src='https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2000&auto=format&fit=crop'
+                  alt='Quality assurance process'
+                  className='w-full h-[400px] object-cover'
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Office Locations */}
-      <section className='py-20'>
-        <div className='container px-4 md:px-6'>
-          <div className='text-center mb-12'>
-            <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl'>
-              Global Presence
-            </h2>
-            <p className='mt-4 text-muted-foreground md:text-xl max-w-2xl mx-auto'>
-              Our offices around the world ensure 24/7 support for our clients.
-            </p>
-          </div>
-
-          <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-3'>
-            <Card>
-              <CardHeader>
-                <MapPin className='h-10 w-10 text-primary mb-2' />
-                <CardTitle>San Francisco, CA</CardTitle>
-                <CardDescription>Headquarters</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className='text-sm text-muted-foreground mb-4'>
-                  123 Tech Street, Suite 400
-                  <br />
-                  San Francisco, CA 94105
-                </p>
-                <div className='space-y-2 text-sm'>
-                  <div className='flex justify-between'>
-                    <span>Team Size:</span>
-                    <span className='font-medium'>25 members</span>
+      {/* Section 4: Technology & Tools */}
+      <section className='py-16 lg:py-24 bg-muted/50'>
+        <div className='container px-4 md:px-6 max-w-7xl mx-auto'>
+          <div className='grid gap-8 lg:grid-cols-2 items-center'>
+            <div>
+              <div className='relative rounded-2xl overflow-hidden shadow-2xl'>
+                <img
+                  src='https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2000&auto=format&fit=crop'
+                  alt='Modern technology stack'
+                  className='w-full h-[400px] object-cover'
+                />
+              </div>
+            </div>
+            <div>
+              <Card className='h-full shadow-lg border-2'>
+                <CardHeader>
+                  <Badge variant='outline' className='w-fit mb-4'>
+                    Technology & Tools
+                  </Badge>
+                  <CardTitle className='text-3xl font-bold mb-4'>
+                    Modern Tools & Platforms
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className='space-y-4'>
+                  <p className='text-lg text-muted-foreground leading-relaxed'>
+                    We work with the latest technologies, cloud-based platforms,
+                    CI/CD pipelines, and open-source and enterprise testing
+                    tools to deliver scalable and future-ready solutions.
+                  </p>
+                  <div className='grid grid-cols-2 gap-3 mt-6'>
+                    <div className='flex items-center gap-2 p-3 bg-muted rounded-lg'>
+                      <Code className='h-5 w-5 text-primary' />
+                      <span className='text-sm font-medium'>
+                        Cloud Platforms
+                      </span>
+                    </div>
+                    <div className='flex items-center gap-2 p-3 bg-muted rounded-lg'>
+                      <Zap className='h-5 w-5 text-primary' />
+                      <span className='text-sm font-medium'>
+                        CI/CD Pipelines
+                      </span>
+                    </div>
+                    <div className='flex items-center gap-2 p-3 bg-muted rounded-lg'>
+                      <Code className='h-5 w-5 text-primary' />
+                      <span className='text-sm font-medium'>
+                        Open-source Tools
+                      </span>
+                    </div>
+                    <div className='flex items-center gap-2 p-3 bg-muted rounded-lg'>
+                      <Shield className='h-5 w-5 text-primary' />
+                      <span className='text-sm font-medium'>
+                        Enterprise Tools
+                      </span>
+                    </div>
                   </div>
-                  <div className='flex justify-between'>
-                    <span>Specialties:</span>
-                    <span className='font-medium'>All services</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <MapPin className='h-10 w-10 text-primary mb-2' />
-                <CardTitle>Austin, TX</CardTitle>
-                <CardDescription>Development Center</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className='text-sm text-muted-foreground mb-4'>
-                  456 Innovation Blvd
-                  <br />
-                  Austin, TX 78701
-                </p>
-                <div className='space-y-2 text-sm'>
-                  <div className='flex justify-between'>
-                    <span>Team Size:</span>
-                    <span className='font-medium'>15 members</span>
-                  </div>
-                  <div className='flex justify-between'>
-                    <span>Specialties:</span>
-                    <span className='font-medium'>Automation, Performance</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <MapPin className='h-10 w-10 text-primary mb-2' />
-                <CardTitle>Toronto, Canada</CardTitle>
-                <CardDescription>International Office</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className='text-sm text-muted-foreground mb-4'>
-                  789 Queen Street West
-                  <br />
-                  Toronto, ON M5V 1N2
-                </p>
-                <div className='space-y-2 text-sm'>
-                  <div className='flex justify-between'>
-                    <span>Team Size:</span>
-                    <span className='font-medium'>10 members</span>
-                  </div>
-                  <div className='flex justify-between'>
-                    <span>Specialties:</span>
-                    <span className='font-medium'>Mobile, Security</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Company Culture */}
-      <section className='py-20 bg-muted/50'>
-        <div className='container px-4 md:px-6'>
-          <div className='text-center mb-12'>
-            <Badge variant='outline' className='mb-4'>
-              Company Culture
-            </Badge>
-            <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl'>
-              What Makes Us Different
-            </h2>
-          </div>
-
-          <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-3'>
-            <Card>
-              <CardHeader>
-                <Users className='h-10 w-10 text-primary mb-2' />
-                <CardTitle>Collaborative Environment</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className='text-muted-foreground'>
-                  We foster a culture of collaboration where every team member's
-                  input is valued and heard.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Lightbulb className='h-10 w-10 text-primary mb-2' />
-                <CardTitle>Continuous Learning</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className='text-muted-foreground'>
-                  Regular training, certifications, and conference attendance
-                  keep our team at the cutting edge.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Award className='h-10 w-10 text-primary mb-2' />
-                <CardTitle>Recognition & Growth</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className='text-muted-foreground'>
-                  Clear career paths and recognition programs that celebrate
-                  achievements and milestones.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Shield className='h-10 w-10 text-primary mb-2' />
-                <CardTitle>Work-Life Balance</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className='text-muted-foreground'>
-                  Flexible working arrangements and comprehensive benefits that
-                  support our team's well-being.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Target className='h-10 w-10 text-primary mb-2' />
-                <CardTitle>Innovation Focus</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className='text-muted-foreground'>
-                  Dedicated time for exploring new tools, techniques, and
-                  methodologies in quality assurance.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CheckCircle className='h-10 w-10 text-primary mb-2' />
-                <CardTitle>Quality First</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className='text-muted-foreground'>
-                  Every project, no matter the size, receives the same level of
-                  attention and quality focus.
-                </p>
-              </CardContent>
-            </Card>
+      {/* Section 5: Our Philosophy */}
+      <section className='py-16 lg:py-24'>
+        <div className='container px-4 md:px-6 max-w-7xl mx-auto'>
+          <div className='grid gap-8 lg:grid-cols-2 items-center'>
+            <div>
+              <Card className='h-full shadow-lg border-2'>
+                <CardHeader>
+                  <Badge variant='outline' className='w-fit mb-4'>
+                    Our Philosophy
+                  </Badge>
+                  <CardTitle className='text-3xl font-bold mb-4'>
+                    What Sets Us Apart
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className='space-y-6'>
+                  <div className='flex items-start gap-4'>
+                    <div className='w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0'>
+                      <Target className='h-6 w-6 text-primary' />
+                    </div>
+                    <div>
+                      <h3 className='font-semibold text-lg mb-2'>
+                        Quality-Driven
+                      </h3>
+                      <p className='text-muted-foreground'>
+                        Quality built into every stage of the software
+                        development lifecycle
+                      </p>
+                    </div>
+                  </div>
+                  <div className='flex items-start gap-4'>
+                    <div className='w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0'>
+                      <Users className='h-6 w-6 text-primary' />
+                    </div>
+                    <div>
+                      <h3 className='font-semibold text-lg mb-2'>
+                        Client Collaboration
+                      </h3>
+                      <p className='text-muted-foreground'>
+                        We work closely with clients to understand business
+                        goals and mitigate risks early
+                      </p>
+                    </div>
+                  </div>
+                  <div className='flex items-start gap-4'>
+                    <div className='w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0'>
+                      <TrendingUp className='h-6 w-6 text-primary' />
+                    </div>
+                    <div>
+                      <h3 className='font-semibold text-lg mb-2'>
+                        Accelerate Time-to-Market
+                      </h3>
+                      <p className='text-muted-foreground'>
+                        Deliver faster without compromising on quality standards
+                      </p>
+                    </div>
+                  </div>
+                  <div className='flex items-start gap-4'>
+                    <div className='w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0'>
+                      <Shield className='h-6 w-6 text-primary' />
+                    </div>
+                    <div>
+                      <h3 className='font-semibold text-lg mb-2'>
+                        Measurable Outcomes
+                      </h3>
+                      <p className='text-muted-foreground'>
+                        Ensure improved customer satisfaction and long-term
+                        value
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+            <div>
+              <div className='relative rounded-2xl overflow-hidden shadow-2xl'>
+                <img
+                  src='https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2000&auto=format&fit=crop'
+                  alt='Team collaboration and values'
+                  className='w-full h-[400px] object-cover'
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className='py-20'>
-        <div className='container px-4 md:px-6'>
-          <div className='text-center mb-12'>
-            <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl mb-4'>
-              Our Core Values
-            </h2>
-            <p className='text-muted-foreground md:text-xl max-w-2xl mx-auto'>
-              The principles that guide everything we do.
-            </p>
+      {/* Section 6: Who We Serve */}
+      <section className='py-16 lg:py-24 bg-muted/50'>
+        <div className='container px-4 md:px-6 max-w-7xl mx-auto'>
+          <div className='grid gap-8 lg:grid-cols-2 items-center'>
+            <div>
+              <div className='relative rounded-2xl overflow-hidden shadow-2xl'>
+                <img
+                  src='https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2000&auto=format&fit=crop'
+                  alt='Startups and enterprises'
+                  className='w-full h-[400px] object-cover'
+                />
+              </div>
+            </div>
+            <div>
+              <Card className='h-full shadow-lg border-2'>
+                <CardHeader>
+                  <Badge variant='outline' className='w-fit mb-4'>
+                    Our Clients
+                  </Badge>
+                  <CardTitle className='text-3xl font-bold mb-4'>
+                    From Startups to Enterprises
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className='space-y-4'>
+                  <p className='text-lg text-muted-foreground leading-relaxed'>
+                    Whether you are a startup launching a new product or an
+                    enterprise modernising complex systems, our flexible
+                    engagement models and experienced testing professionals
+                    ensure measurable quality outcomes, improved customer
+                    satisfaction, and long-term value.
+                  </p>
+                  <div className='space-y-4 mt-6'>
+                    <div className='flex items-start gap-3 p-4 bg-muted rounded-lg'>
+                      <Building2 className='h-6 w-6 text-primary mt-1 shrink-0' />
+                      <div>
+                        <h3 className='font-semibold mb-1'>Startups</h3>
+                        <p className='text-sm text-muted-foreground'>
+                          Launch your product with confidence using our
+                          comprehensive testing services
+                        </p>
+                      </div>
+                    </div>
+                    <div className='flex items-start gap-3 p-4 bg-muted rounded-lg'>
+                      <Building2 className='h-6 w-6 text-primary mt-1 shrink-0' />
+                      <div>
+                        <h3 className='font-semibold mb-1'>Enterprises</h3>
+                        <p className='text-sm text-muted-foreground'>
+                          Modernise complex systems with our scalable testing
+                          solutions
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div className='grid gap-8 sm:grid-cols-2 lg:grid-cols-3'>
-            <Card>
-              <CardHeader>
-                <Award className='h-10 w-10 text-primary mb-2' />
-                <CardTitle>Excellence</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className='text-muted-foreground'>
-                  We strive for perfection in every test case, every bug report,
-                  and every client interaction.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Users className='h-10 w-10 text-primary mb-2' />
-                <CardTitle>Collaboration</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className='text-muted-foreground'>
-                  We work closely with our clients as partners, not just service
-                  providers.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <Lightbulb className='h-10 w-10 text-primary mb-2' />
-                <CardTitle>Innovation</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className='text-muted-foreground'>
-                  We continuously adopt new technologies and methodologies to
-                  stay ahead of the curve.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
+      {/* Tagline Section */}
+      <section className='py-20 bg-muted dark:bg-muted/80 border-y border-border/50'>
+        <div className='container px-4 md:px-6 max-w-4xl mx-auto text-center'>
+          <h2 className='text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl mb-6'>
+            We Don't Just Test Software
+            <br />
+            <Highlight className="text-black dark:text-white">
+          We Elevate Quality
+        </Highlight>
+          </h2>
+          <p className='text-lg md:text-xl text-muted-foreground mb-8'>
+            At Elevation Technologies Pty Ltd, we are committed to helping
+            businesses deliver reliable, secure, and high-performing digital
+            products.
+          </p>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className='py-20 bg-muted/50'>
-        <div className='container px-4 md:px-6'>
-          <div className='text-center space-y-4'>
-            <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl'>
-              Ready to Work With Us?
+      <section className='py-20'>
+        <div className='container px-4 md:px-6 max-w-4xl mx-auto'>
+          <div className='text-center space-y-6'>
+            <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl'>
+              Ready to Elevate Your Software Quality?
             </h2>
             <p className='mx-auto max-w-[600px] text-muted-foreground md:text-xl'>
               Let's discuss how our expertise can help ensure your software
-              meets the highest quality standards.
+              meets the highest quality standards and accelerates your
+              time-to-market.
             </p>
-            <div className='flex flex-col gap-2 min-[400px]:flex-row justify-center'>
+            <div className='flex flex-col gap-4 min-[400px]:flex-row justify-center pt-4'>
               <Button size='lg' asChild>
                 <Link href='/contact'>
                   Get In Touch

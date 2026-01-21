@@ -1,4 +1,9 @@
 "use client"
+import React from "react"
+import { cn } from "@/lib/utils"
+import createGlobe from "cobe"
+import { useEffect, useRef, useState } from "react"
+import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -18,7 +23,6 @@ import {
   Code,
   Smartphone,
   Gauge,
-  Globe,
   Award,
 } from "lucide-react"
 import Link from "next/link"
@@ -32,6 +36,284 @@ import { Compare } from "@/components/ui/compare"
 import { HoverEffect } from "@/components/ui/card-hover-effect"
 import { FocusCards } from "@/components/ui/focus-cards"
 import FadeContent from "@/components/ui/fade"
+import { TestimonialsMarquee } from "@/app/testimonials"
+
+export function FeaturesSectionDemo() {
+  const features = [
+    {
+      title: "Test Planning & Strategy",
+      description:
+        "Comprehensive analysis of requirements and strategic test planning to ensure complete coverage and risk mitigation.",
+      skeleton: <SkeletonOne />,
+      className:
+        "col-span-1 lg:col-span-4 border-b lg:border-r dark:border-neutral-800",
+    },
+    {
+      title: "Test Execution & Analysis",
+      description:
+        "Systematic execution of test cases with detailed analysis of results, ensuring thorough validation of functionality.",
+      skeleton: <SkeletonTwo />,
+      className: "border-b col-span-1 lg:col-span-2 dark:border-neutral-800",
+    },
+    {
+      title: "Defect Tracking & Reporting",
+      description:
+        "Comprehensive defect documentation and management with clear reporting to facilitate swift resolution and quality improvement.",
+      skeleton: <SkeletonThree />,
+      className:
+        "col-span-1 lg:col-span-3 lg:border-r  dark:border-neutral-800",
+    },
+    {
+      title: "Deployment & Quality Assurance",
+      description:
+        "Final quality verification and seamless deployment with continuous monitoring to ensure production-ready software.",
+      skeleton: <SkeletonFour />,
+      className: "col-span-1 lg:col-span-3 border-b lg:border-none",
+    },
+  ]
+  return (
+    <div className='relative z-20 py-10 lg:py-40 max-w-7xl mx-auto'>
+      <div className='px-8'>
+        <h4 className='text-4xl md:text-5xl lg:text-6xl xl:text-7xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium text-black dark:text-white'>
+          How We Work
+        </h4>
+
+        <p className='text-base md:text-lg lg:text-xl max-w-2xl my-4 mx-auto text-neutral-500 text-center font-normal dark:text-neutral-300'>
+          From comprehensive test planning to seamless deployment, our QA process ensures
+          quality at every stage of software development.
+        </p>
+      </div>
+
+      <div className='relative '>
+        <div className='grid grid-cols-1 lg:grid-cols-6 mt-12 xl:border rounded-md dark:border-neutral-800'>
+          {features.map((feature) => (
+            <FeatureCard key={feature.title} className={feature.className}>
+              <FeatureTitle>{feature.title}</FeatureTitle>
+              <FeatureDescription>{feature.description}</FeatureDescription>
+              <div className=' h-full w-full'>{feature.skeleton}</div>
+            </FeatureCard>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const FeatureCard = ({
+  children,
+  className,
+}: {
+  children?: React.ReactNode
+  className?: string
+}) => {
+  return (
+    <div className={cn(`p-4 sm:p-8 relative overflow-hidden`, className)}>
+      {children}
+    </div>
+  )
+}
+
+const FeatureTitle = ({ children }: { children?: React.ReactNode }) => {
+  return (
+    <h3 className='max-w-5xl mx-auto text-center tracking-tight text-black dark:text-white text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight'>
+      {children}
+    </h3>
+  )
+}
+
+const FeatureDescription = ({ children }: { children?: React.ReactNode }) => {
+  return (
+    <p
+      className={cn(
+        "text-xs md:text-sm max-w-4xl text-center mx-auto",
+        "text-neutral-500 font-light dark:text-neutral-300",
+        "max-w-md mx-auto leading-relaxed mb-4"
+      )}
+    >
+      {children}
+    </p>
+  )
+}
+
+export const SkeletonOne = () => {
+  return (
+    <div className='relative flex py-8 px-2 gap-10 h-full'>
+      <div className='w-full  p-5  mx-auto bg-white dark:bg-neutral-900 shadow-2xl group h-full'>
+        <div className='flex flex-1 w-full h-full flex-col space-y-2  '>
+          <img
+            src='https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2000&auto=format&fit=crop'
+            alt='Test planning and strategy'
+            width={800}
+            height={800}
+            className='h-full w-full aspect-square object-cover object-left-top rounded-sm'
+          />
+        </div>
+      </div>
+
+      <div className='absolute bottom-0 z-40 inset-x-0 h-60 bg-gradient-to-t from-white dark:from-black via-white dark:via-black to-transparent w-full pointer-events-none' />
+      <div className='absolute top-0 z-40 inset-x-0 h-60 bg-gradient-to-b from-white dark:from-black via-transparent to-transparent w-full pointer-events-none' />
+    </div>
+  )
+}
+
+export const SkeletonThree = () => {
+  return (
+    <div className='relative flex gap-10  h-full group/image'>
+      <div className='w-full  mx-auto bg-transparent dark:bg-transparent group h-full'>
+        <div className='flex flex-1 w-full h-full flex-col space-y-2  relative'>
+          <img
+            src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop'
+            alt='Defect tracking and reporting'
+            width={800}
+            height={800}
+            className='h-full w-full aspect-square object-cover object-center rounded-sm'
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export const SkeletonTwo = () => {
+  const images = [
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2000&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2000&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2000&auto=format&fit=crop",
+  ]
+
+  // Generate rotations only on client to avoid hydration mismatch
+  const [firstRowRotations, setFirstRowRotations] = useState<number[]>([])
+  const [secondRowRotations, setSecondRowRotations] = useState<number[]>([])
+
+  useEffect(() => {
+    // Generate random rotations only on client side
+    setFirstRowRotations(images.map(() => Math.random() * 20 - 10))
+    setSecondRowRotations(images.map(() => Math.random() * 20 - 10))
+  }, [images.length])
+
+  const imageVariants = {
+    whileHover: {
+      scale: 1.1,
+      rotate: 0,
+      zIndex: 100,
+    },
+    whileTap: {
+      scale: 1.1,
+      rotate: 0,
+      zIndex: 100,
+    },
+  }
+  return (
+    <div className='relative flex flex-col items-start p-8 gap-10 h-full overflow-hidden'>
+      {/* TODO */}
+      <div className='flex flex-row -ml-20'>
+        {images.map((image, idx) => (
+          <motion.div
+            variants={imageVariants}
+            key={"images-first" + idx}
+            style={{
+              rotate: firstRowRotations[idx] || 0,
+            }}
+            whileHover='whileHover'
+            whileTap='whileTap'
+            className='rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 shrink-0 overflow-hidden'
+          >
+            <img
+              src={image}
+              alt='QA testing process'
+              width='500'
+              height='500'
+              className='rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover shrink-0'
+            />
+          </motion.div>
+        ))}
+      </div>
+      <div className='flex flex-row'>
+        {images.map((image, idx) => (
+          <motion.div
+            key={"images-second" + idx}
+            style={{
+              rotate: secondRowRotations[idx] || 0,
+            }}
+            variants={imageVariants}
+            whileHover='whileHover'
+            whileTap='whileTap'
+            className='rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 shrink-0 overflow-hidden'
+          >
+            <img
+              src={image}
+              alt='QA testing process'
+              width='500'
+              height='500'
+              className='rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover shrink-0'
+            />
+          </motion.div>
+        ))}
+      </div>
+
+      <div className='absolute left-0 z-[100] inset-y-0 w-20 bg-gradient-to-r from-white dark:from-black to-transparent  h-full pointer-events-none' />
+      <div className='absolute right-0 z-[100] inset-y-0 w-20 bg-gradient-to-l from-white dark:from-black  to-transparent h-full pointer-events-none' />
+    </div>
+  )
+}
+
+export const SkeletonFour = () => {
+  return (
+    <div className='h-60 md:h-60  flex flex-col items-center relative bg-transparent dark:bg-transparent mt-10'>
+      <Globe className='absolute -right-10 md:-right-10 -bottom-80 md:-bottom-72' />
+    </div>
+  )
+}
+
+export const Globe = ({ className }: { className?: string }) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    let phi = 0
+
+    if (!canvasRef.current) return
+
+    const globe = createGlobe(canvasRef.current, {
+      devicePixelRatio: 2,
+      width: 600 * 2,
+      height: 600 * 2,
+      phi: 0,
+      theta: 0,
+      dark: 1,
+      diffuse: 1.2,
+      mapSamples: 16000,
+      mapBrightness: 6,
+      baseColor: [0.3, 0.3, 0.3],
+      markerColor: [0.1, 0.8, 1],
+      glowColor: [1, 1, 1],
+      markers: [
+        // longitude latitude
+        { location: [37.7595, -122.4367], size: 0.03 },
+        { location: [40.7128, -74.006], size: 0.1 },
+      ],
+      onRender: (state) => {
+        // Called on every animation frame.
+        // `state` will be an empty object, return updated params.
+        state.phi = phi
+        phi += 0.01
+      },
+    })
+
+    return () => {
+      globe.destroy()
+    }
+  }, [])
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{ width: 600, height: 600, maxWidth: "100%", aspectRatio: 1 }}
+      className={className}
+    />
+  )
+}
 
 const cards = [
   {
@@ -62,40 +344,76 @@ const cards = [
 
 export const projects = [
   {
-    title: "Stripe",
+    title: "Automation Testing",
     description:
-      "A technology company that builds economic infrastructure for the internet.",
-    link: "https://stripe.com",
+      "Streamline your testing process with cutting-edge automation tools and frameworks.",
+    link: "/services/web-development",
+    image:
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2000&auto=format&fit=crop",
   },
   {
-    title: "Netflix",
+    title: "Accessibility Testing",
     description:
-      "A streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
-    link: "https://netflix.com",
+      "Ensure your applications meet WCAG standards and create inclusive digital experiences.",
+    link: "/services/mobile-development",
+    image:
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2000&auto=format&fit=crop",
   },
   {
-    title: "Google",
+    title: "Mobile Application",
     description:
-      "A multinational technology company that specializes in Internet-related services and products.",
-    link: "https://google.com",
+      "Comprehensive testing for iOS and Android applications across all devices and platforms.",
+    link: "/services/ui-ux-design",
+    image:
+      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=2000&auto=format&fit=crop",
   },
   {
-    title: "Meta",
+    title: "ETL Testing",
     description:
-      "A technology company that focuses on building products that advance Facebook's mission of bringing the world closer together.",
-    link: "https://meta.com",
+      "Validate data transformation processes ensuring integrity and accuracy throughout pipelines.",
+    link: "/services/qa-testing",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
   },
   {
-    title: "Amazon",
+    title: "Software QA Outsourcing",
     description:
-      "A multinational technology company focusing on e-commerce, cloud computing, digital streaming, and artificial intelligence.",
-    link: "https://amazon.com",
+      "Scale your QA capabilities with dedicated testing teams that integrate seamlessly.",
+    link: "/services/devops",
+    image:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop",
   },
   {
-    title: "Microsoft",
+    title: "Manual Testing",
     description:
-      "A multinational technology company that develops, manufactures, licenses, supports, and sells computer software, consumer electronics, personal computers, and related services.",
-    link: "https://microsoft.com",
+      "Expert manual testing services to catch issues automated tests might miss.",
+    link: "/manual_testing",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2000&auto=format&fit=crop",
+  },
+  {
+    title: "Non-Functional Testing",
+    description:
+      "Comprehensive testing of performance, scalability, reliability, and usability requirements.",
+    link: "/services/database-design",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2000&auto=format&fit=crop",
+  },
+  {
+    title: "Performance Testing",
+    description:
+      "Identify bottlenecks and optimize performance under various load conditions.",
+    link: "/services/api-development",
+    image:
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2000&auto=format&fit=crop",
+  },
+  {
+    title: "Security Testing",
+    description:
+      "Protect applications from vulnerabilities with penetration testing and security assessments.",
+    link: "/services/security-auditing",
+    image:
+      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2000&auto=format&fit=crop",
   },
 ]
 
@@ -148,6 +466,8 @@ const content = [
   },
 ]
 
+
+
 export default function HomePage() {
   return (
     <div className='min-h-screen bg-background'>
@@ -187,11 +507,9 @@ export default function HomePage() {
         <MarketingHeroCard />
       </FadeContent>
 
-      <div className='w-full py-4'>
-        <StickyScroll content={content} />
-      </div>
+      <FeaturesSectionDemo />
 
-      <FadeContent
+      {/* <FadeContent
         blur={true}
         duration={1000}
         easing='ease-out'
@@ -254,33 +572,33 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-      </FadeContent>
+      </FadeContent> */}
 
       {/* Stats Section */}
       <section className='py-12 bg-muted/50'>
-        <div className='container px-4 md:px-6'>
-          <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-4'>
-            <div className='text-center'>
-              <div className='text-3xl font-bold text-primary'>3x</div>
-              <div className='text-sm text-muted-foreground'>
+        <div className='container px-4 md:px-6 max-w-7xl mx-auto'>
+          <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-4 justify-items-center'>
+            <div className='text-center max-w-xs'>
+              <div className='text-3xl font-bold text-primary mb-2'>3x</div>
+              <div className='text-sm text-muted-foreground text-center'>
                 Faster Time-to-Market
               </div>
             </div>
-            <div className='text-center'>
-              <div className='text-3xl font-bold text-primary'>99.9%</div>
-              <div className='text-sm text-muted-foreground'>
+            <div className='text-center max-w-xs'>
+              <div className='text-3xl font-bold text-primary mb-2'>99.9%</div>
+              <div className='text-sm text-muted-foreground text-center'>
                 Bug Detection Rate
               </div>
             </div>
-            <div className='text-center'>
-              <div className='text-3xl font-bold text-primary'>50+</div>
-              <div className='text-sm text-muted-foreground'>
+            <div className='text-center max-w-xs'>
+              <div className='text-3xl font-bold text-primary mb-2'>50+</div>
+              <div className='text-sm text-muted-foreground text-center'>
                 Expert QA Engineers
               </div>
             </div>
-            <div className='text-center'>
-              <div className='text-3xl font-bold text-primary'>24/7</div>
-              <div className='text-sm text-muted-foreground'>
+            <div className='text-center max-w-xs'>
+              <div className='text-3xl font-bold text-primary mb-2'>24/7</div>
+              <div className='text-sm text-muted-foreground text-center'>
                 Support Available
               </div>
             </div>
@@ -290,7 +608,7 @@ export default function HomePage() {
 
       {/* Services Section */}
 
-      <div className='container px-4 md:px-6 max-w-7xl mx-auto py-20'>
+      <div className='container px-4 md:px-6 max-w-7xl mx-auto pt-20 pb-10'>
         <div className=' mb-12 text-center'>
           <Badge variant='outline' className='mb-4'>
             Our Services
@@ -305,10 +623,6 @@ export default function HomePage() {
 
           <div className='max-w-5xl mx-auto px-8'>
             <HoverEffect items={projects} />
-          </div>
-
-          <div className='max-w-5xl mx-auto px-8'>
-            <FocusCards cards={cards} />
           </div>
         </div>
       </div>
@@ -420,101 +734,17 @@ export default function HomePage() {
       */}
 
       {/* Testimonials */}
-      <section className='min-h-screen flex items-center justify-center py-20'>
+      <section className='flex items-center justify-center pt-10 pb-20 bg-white dark:bg-white'>
         <div className='container px-4 md:px-6 max-w-7xl mx-auto'>
           <div className='text-center mb-12'>
-            <Badge variant='outline' className='mb-4'>
+            <Badge variant='outline' className='mb-4 text-black'>
               Testimonials
             </Badge>
-            <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl'>
+            <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl text-black'>
               What Our Clients Say
             </h2>
           </div>
-          <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
-            <Card>
-              <CardContent className='pt-6'>
-                <div className='flex items-center gap-1 mb-4'>
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className='h-4 w-4 fill-yellow-400 text-yellow-400'
-                    />
-                  ))}
-                </div>
-                <p className='text-sm mb-4'>
-                  "Their automated testing suite reduced our deployment time by
-                  60% while improving quality significantly."
-                </p>
-                <div className='flex items-center gap-3'>
-                  <div className='w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center'>
-                    <span className='text-sm font-semibold'>JD</span>
-                  </div>
-                  <div>
-                    <div className='font-semibold text-sm'>John Doe</div>
-                    <div className='text-xs text-muted-foreground'>
-                      CTO, TechCorp
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className='pt-6'>
-                <div className='flex items-center gap-1 mb-4'>
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className='h-4 w-4 fill-yellow-400 text-yellow-400'
-                    />
-                  ))}
-                </div>
-                <p className='text-sm mb-4'>
-                  "Professional team with deep expertise. They found critical
-                  issues we missed internally."
-                </p>
-                <div className='flex items-center gap-3'>
-                  <div className='w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center'>
-                    <span className='text-sm font-semibold'>SM</span>
-                  </div>
-                  <div>
-                    <div className='font-semibold text-sm'>Sarah Miller</div>
-                    <div className='text-xs text-muted-foreground'>
-                      Product Manager, StartupXYZ
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className='pt-6'>
-                <div className='flex items-center gap-1 mb-4'>
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className='h-4 w-4 fill-yellow-400 text-yellow-400'
-                    />
-                  ))}
-                </div>
-                <p className='text-sm mb-4'>
-                  "Excellent communication and detailed reporting. They're now
-                  our go-to QA partner."
-                </p>
-                <div className='flex items-center gap-3'>
-                  <div className='w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center'>
-                    <span className='text-sm font-semibold'>MJ</span>
-                  </div>
-                  <div>
-                    <div className='font-semibold text-sm'>Mike Johnson</div>
-                    <div className='text-xs text-muted-foreground'>
-                      Lead Developer, WebSolutions
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          <TestimonialsMarquee />
         </div>
       </section>
 
@@ -632,8 +862,12 @@ export default function HomePage() {
           <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
             <Card className='text-center'>
               <CardContent className='pt-6'>
-                <div className='w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4'>
-                  <Code className='h-8 w-8 text-primary' />
+                <div className='w-16 h-16 bg-white dark:bg-neutral-800 rounded-lg flex items-center justify-center mx-auto mb-4 p-2'>
+                  <img
+                    src='https://cdn.simpleicons.org/selenium/43B02A'
+                    alt='Selenium'
+                    className='w-full h-full object-contain'
+                  />
                 </div>
                 <h3 className='font-semibold mb-2'>Selenium</h3>
                 <p className='text-sm text-muted-foreground'>
@@ -644,8 +878,12 @@ export default function HomePage() {
 
             <Card className='text-center'>
               <CardContent className='pt-6'>
-                <div className='w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4'>
-                  <Zap className='h-8 w-8 text-primary' />
+                <div className='w-16 h-16 bg-white dark:bg-neutral-800 rounded-lg flex items-center justify-center mx-auto mb-4 p-2'>
+                  <img
+                    src='https://cdn.simpleicons.org/cypress/17202C'
+                    alt='Cypress'
+                    className='w-full h-full object-contain'
+                  />
                 </div>
                 <h3 className='font-semibold mb-2'>Cypress</h3>
                 <p className='text-sm text-muted-foreground'>
@@ -656,8 +894,12 @@ export default function HomePage() {
 
             <Card className='text-center'>
               <CardContent className='pt-6'>
-                <div className='w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4'>
-                  <Smartphone className='h-8 w-8 text-primary' />
+                <div className='w-16 h-16 bg-white dark:bg-neutral-800 rounded-lg flex items-center justify-center mx-auto mb-4 p-2'>
+                  <img
+                    src='https://cdn.simpleicons.org/appium/5A0FC8'
+                    alt='Appium'
+                    className='w-full h-full object-contain'
+                  />
                 </div>
                 <h3 className='font-semibold mb-2'>Appium</h3>
                 <p className='text-sm text-muted-foreground'>
@@ -668,8 +910,12 @@ export default function HomePage() {
 
             <Card className='text-center'>
               <CardContent className='pt-6'>
-                <div className='w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4'>
-                  <Gauge className='h-8 w-8 text-primary' />
+                <div className='w-16 h-16 bg-white dark:bg-neutral-800 rounded-lg flex items-center justify-center mx-auto mb-4 p-2'>
+                  <img
+                    src='https://cdn.simpleicons.org/apachejmeter/D22128'
+                    alt='JMeter'
+                    className='w-full h-full object-contain'
+                  />
                 </div>
                 <h3 className='font-semibold mb-2'>JMeter</h3>
                 <p className='text-sm text-muted-foreground'>
@@ -680,8 +926,12 @@ export default function HomePage() {
 
             <Card className='text-center'>
               <CardContent className='pt-6'>
-                <div className='w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4'>
-                  <Shield className='h-8 w-8 text-primary' />
+                <div className='w-16 h-16 bg-white dark:bg-neutral-800 rounded-lg flex items-center justify-center mx-auto mb-4 p-2'>
+                  <img
+                    src='https://cdn.simpleicons.org/owasp/000000'
+                    alt='OWASP ZAP'
+                    className='w-full h-full object-contain'
+                  />
                 </div>
                 <h3 className='font-semibold mb-2'>OWASP ZAP</h3>
                 <p className='text-sm text-muted-foreground'>
@@ -692,8 +942,12 @@ export default function HomePage() {
 
             <Card className='text-center'>
               <CardContent className='pt-6'>
-                <div className='w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4'>
-                  <Users className='h-8 w-8 text-primary' />
+                <div className='w-16 h-16 bg-white dark:bg-neutral-800 rounded-lg flex items-center justify-center mx-auto mb-4 p-2'>
+                  <img
+                    src='https://cdn.simpleicons.org/testrail/2B3A4E'
+                    alt='TestRail'
+                    className='w-full h-full object-contain'
+                  />
                 </div>
                 <h3 className='font-semibold mb-2'>TestRail</h3>
                 <p className='text-sm text-muted-foreground'>Test management</p>
@@ -702,8 +956,12 @@ export default function HomePage() {
 
             <Card className='text-center'>
               <CardContent className='pt-6'>
-                <div className='w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4'>
-                  <Globe className='h-8 w-8 text-primary' />
+                <div className='w-16 h-16 bg-white dark:bg-neutral-800 rounded-lg flex items-center justify-center mx-auto mb-4 p-2'>
+                  <img
+                    src='https://cdn.simpleicons.org/postman/FF6C37'
+                    alt='Postman'
+                    className='w-full h-full object-contain'
+                  />
                 </div>
                 <h3 className='font-semibold mb-2'>Postman</h3>
                 <p className='text-sm text-muted-foreground'>API testing</p>
@@ -712,8 +970,12 @@ export default function HomePage() {
 
             <Card className='text-center'>
               <CardContent className='pt-6'>
-                <div className='w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4'>
-                  <CheckCircle className='h-8 w-8 text-primary' />
+                <div className='w-16 h-16 bg-white dark:bg-neutral-800 rounded-lg flex items-center justify-center mx-auto mb-4 p-2'>
+                  <img
+                    src='https://cdn.simpleicons.org/jenkins/D24939'
+                    alt='Jenkins'
+                    className='w-full h-full object-contain'
+                  />
                 </div>
                 <h3 className='font-semibold mb-2'>Jenkins</h3>
                 <p className='text-sm text-muted-foreground'>
@@ -853,63 +1115,8 @@ export default function HomePage() {
       </section>
       */}
 
-      {/* Certifications & Awards */}
-      <section className='min-h-screen flex items-center justify-center py-20 bg-muted/50'>
-        <div className='container px-4 md:px-6 max-w-7xl mx-auto'>
-          <div className='text-center mb-12'>
-            <Badge variant='outline' className='mb-4'>
-              Certifications & Awards
-            </Badge>
-            <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl'>
-              Recognized Excellence in Quality Assurance
-            </h2>
-          </div>
-          <div className='grid gap-6 sm:grid-cols-2 lg:grid-cols-4'>
-            <Card className='text-center'>
-              <CardContent className='pt-6'>
-                <Award className='h-12 w-12 text-primary mx-auto mb-4' />
-                <h3 className='font-semibold mb-2'>ISO 9001:2015</h3>
-                <p className='text-sm text-muted-foreground'>
-                  Quality Management Systems
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className='text-center'>
-              <CardContent className='pt-6'>
-                <Shield className='h-12 w-12 text-primary mx-auto mb-4' />
-                <h3 className='font-semibold mb-2'>ISTQB Certified</h3>
-                <p className='text-sm text-muted-foreground'>
-                  International Software Testing
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className='text-center'>
-              <CardContent className='pt-6'>
-                <Star className='h-12 w-12 text-primary mx-auto mb-4' />
-                <h3 className='font-semibold mb-2'>Best QA Partner 2023</h3>
-                <p className='text-sm text-muted-foreground'>
-                  Tech Excellence Awards
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className='text-center'>
-              <CardContent className='pt-6'>
-                <CheckCircle className='h-12 w-12 text-primary mx-auto mb-4' />
-                <h3 className='font-semibold mb-2'>SOC 2 Type II</h3>
-                <p className='text-sm text-muted-foreground'>
-                  Security & Compliance
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className='min-h-screen flex items-center justify-center py-20'>
+      <section className='flex items-center justify-center py-12 md:py-16 bg-background'>
         <div className='container px-4 md:px-6 max-w-7xl mx-auto'>
           <div className='text-center space-y-4'>
             <h2 className='text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl'>

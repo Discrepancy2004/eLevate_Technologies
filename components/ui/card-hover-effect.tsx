@@ -12,6 +12,7 @@ export const HoverEffect = ({
     title: string
     description: string
     link: string
+    image?: string
   }[]
   className?: string
 }) => {
@@ -49,7 +50,7 @@ export const HoverEffect = ({
               />
             )}
           </AnimatePresence>
-          <Card>
+          <Card image={item.image}>
             <CardTitle>{item.title}</CardTitle>
             <CardDescription>{item.description}</CardDescription>
           </Card>
@@ -62,9 +63,11 @@ export const HoverEffect = ({
 export const Card = ({
   className,
   children,
+  image,
 }: {
   className?: string
   children: React.ReactNode
+  image?: string
 }) => {
   return (
     <div
@@ -73,6 +76,17 @@ export const Card = ({
         className
       )}
     >
+      {image && (
+        <>
+          <div
+            className='absolute inset-0 bg-cover bg-center bg-no-repeat'
+            style={{
+              backgroundImage: `url(${image})`,
+            }}
+          />
+          <div className='absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70' />
+        </>
+      )}
       <div className='relative z-50'>
         <div className='p-4'>{children}</div>
       </div>
@@ -87,7 +101,7 @@ export const CardTitle = ({
   children: React.ReactNode
 }) => {
   return (
-    <h4 className={cn("text-zinc-100 font-bold tracking-wide mt-4", className)}>
+    <h4 className={cn("text-zinc-100 font-bold tracking-wide mt-4 text-center", className)}>
       {children}
     </h4>
   )
@@ -102,7 +116,7 @@ export const CardDescription = ({
   return (
     <p
       className={cn(
-        "mt-8 text-zinc-400 tracking-wide leading-relaxed text-sm",
+        "mt-8 text-zinc-400 tracking-wide leading-relaxed text-sm text-center",
         className
       )}
     >

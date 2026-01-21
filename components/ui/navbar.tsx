@@ -82,6 +82,10 @@ export function NavbarDemo() {
       ],
     },
     {
+      name: "About Us",
+      link: "/about",
+    },
+    {
       name: "Contact",
       link: "/contact",
     },
@@ -110,7 +114,7 @@ export function NavbarDemo() {
         {/* Services Dropdown for Desktop */}
         {isServicesDropdownOpen && (
           <div
-            className='absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[28rem] bg-white dark:bg-neutral-900 rounded-lg shadow-lg border border-gray-200 dark:border-neutral-700 z-50'
+            className='absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[36rem] max-w-[90vw] bg-white dark:bg-neutral-900 rounded-lg shadow-lg border border-gray-200 dark:border-neutral-700 z-50'
             onMouseEnter={() => setIsServicesDropdownOpen(true)}
             onMouseLeave={() => setIsServicesDropdownOpen(false)}
           >
@@ -122,10 +126,10 @@ export function NavbarDemo() {
                     <a
                       key={`desktop-service-${idx}`}
                       href={service.link}
-                      className='flex items-center gap-2 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors text-sm text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white'
+                      className='flex items-start gap-2 p-2 rounded-md hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors text-sm text-neutral-600 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-white'
                     >
-                      <span className='shrink-0'>{service.icon}</span>
-                      <span className='truncate'>{service.name}</span>
+                      <span className='shrink-0 mt-0.5'>{service.icon}</span>
+                      <span className='break-words leading-tight'>{service.name}</span>
                     </a>
                   ))}
               </div>
@@ -170,10 +174,10 @@ export function NavbarDemo() {
                                 setIsMobileMenuOpen(false)
                                 setIsServicesDropdownOpen(false)
                               }}
-                              className='flex items-center gap-2 px-3 py-2 text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-gray-50 dark:hover:bg-neutral-800 rounded-md'
+                              className='flex items-start gap-2 px-3 py-2 text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 hover:bg-gray-50 dark:hover:bg-neutral-800 rounded-md'
                             >
-                              <span className='shrink-0'>{service.icon}</span>
-                              <span className='truncate'>{service.name}</span>
+                              <span className='shrink-0 mt-0.5'>{service.icon}</span>
+                              <span className='break-words leading-tight'>{service.name}</span>
                             </a>
                           ))}
                         </div>
